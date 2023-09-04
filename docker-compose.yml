@@ -1,0 +1,41 @@
+version: '3.6'
+
+services:
+
+  backend: 
+    image: openjdk:17
+    ports:
+      - 8088:8080
+    tty: true
+    volumes:
+      - ./onlineshop:/srv:cached
+    working_dir: /srv
+
+  mysql:
+    build: 
+      context: ./mysql
+      dockerfile: Dockerfile
+    container_name: onlineshop-mysql
+    volumes:
+      - ./mysql/log/:/var/lib/mysql
+      - ./mysql/sql/:/docker-entrypoint-initdb.d/
+    ports:
+      - 3326:3306
+    environment:
+      MYSQL_DATABASE: "shop" 
+      MYSQL_ROOT_USER: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+      TZ: "Asia/Tokyo"
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: vue-fornt
+    ports:
+      - 8082:8080
+    volumes:
+      - ./front:/usr/src/app:cached
+    tty: true
+    environment:
+      - NODE_ENV=development
