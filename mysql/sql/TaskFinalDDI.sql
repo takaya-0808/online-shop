@@ -33,7 +33,7 @@ create table ONLINE_STAFF(
 
 create table ONLINE_CATEGORY( 
   CTGR_ID integer primary key
-  , NAME varchar (20) NOT NULL
+  , NAME varchar (50) NOT NULL
   , LAST_UPD_DATE timestamp
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
 
@@ -71,3 +71,13 @@ create table ONLINE_ORDER_LIST(
   , ORDER_PRICE bigint NOT NULL
   , foreign key (PRODUCT_CODE) references ONLINE_PRODUCT(PRODUCT_CODE)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
+
+
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (1, 'トップス', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (2, 'パンツ', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (3, 'アウター', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (4, 'スポーツユーティリティウェア', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (5, 'インナー・下着', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (6, 'ルーム・ホーム', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (7, 'グッズ', Now());
+insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (8, '花', Now());
