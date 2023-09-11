@@ -6,11 +6,10 @@ import org.springframework.stereotype.Controller;
 
 
 @Controller
-public class MenuController {
+public class LoginController {
 
-    @RequestMapping(path = "/menu", method = RequestMethod.GET)
-    public String index() {
-        return "common/menu.html";
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    public String getLoginForm() {
+        return "user/login.html";
     }
-
 }
