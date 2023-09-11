@@ -6,10 +6,11 @@ drop table if exists ONLINE_PRODUCT;
 drop table if exists ONLINE_CATEGORY; 
 drop table if exists ONLINE_STAFF; 
 drop table if exists ONLINE_MEMBER; 
+drop table if exists SEX; 
 
 create table ONLINE_MEMBER( 
   MEMBER_NO integer primary key
-  , PASSWORD varchar (8) NOT NULL
+  , PASSWORD varchar (128) NOT NULL
   , NAME varchar (20) NOT NULL
   , AGE integer NOT NULL
   , SEX char (1) NOT NULL
@@ -23,7 +24,7 @@ create table ONLINE_MEMBER(
 
 create table ONLINE_STAFF( 
   STAFF_NO integer primary key
-  , PASSWORD varchar (8) NOT NULL
+  , PASSWORD varchar (128) NOT NULL
   , NAME varchar (20) NOT NULL
   , AGE integer NOT NULL
   , SEX char (1) NOT NULL
@@ -71,6 +72,14 @@ create table ONLINE_ORDER_LIST(
   , ORDER_PRICE bigint NOT NULL
   , foreign key (PRODUCT_CODE) references ONLINE_PRODUCT(PRODUCT_CODE)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
+
+create table SEX (
+    SEX_ID integer primary key,
+    SEX_NAME varchar (5)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
+
+insert into SEX (SEX_ID, SEX_NAME) value (1, '女');
+insert into SEX (SEX_ID, SEX_NAME) value (2, '男');
 
 
 insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (1, 'トップス', Now());
