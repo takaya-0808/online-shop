@@ -20,14 +20,14 @@ create table ONLINE_MEMBER(
   , REGISTER_DATE date NOT NULL
   , DELETE_FLG char (1) default '0' NOT NULL
   , LAST_UPD_DATE timestamp
-) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 create table ONLINE_STAFF( 
   STAFF_NO integer primary key
   , PASSWORD varchar (128) NOT NULL
   , NAME varchar (20) NOT NULL
   , AGE integer NOT NULL
-  , SEX char (1) NOT NULL
+  , SEX char (5) NOT NULL
   , REGISTER_DATE date NOT NULL
   , LAST_UPD_DATE timestamp
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
@@ -75,7 +75,7 @@ create table ONLINE_ORDER_LIST(
 
 create table SEX (
     SEX_ID integer primary key,
-    SEX_NAME varchar (5)
+    SEX_NAME varchar (10)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
 
 insert into SEX (SEX_ID, SEX_NAME) value (1, '女');
@@ -90,3 +90,6 @@ insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (5, 'インナ�
 insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (6, 'ルーム・ホーム', Now());
 insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (7, 'グッズ', Now());
 insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (8, '花', Now());
+
+insert into ONLINE_MEMBER (MEMBER_NO, PASSWORD, NAME, AGE, SEX, ZIP, ADDRESS, TEL, REGISTER_DATE, DELETE_FLG, LAST_UPD_DATE) 
+                      value (1, 'pass', '両面宿儺', 1000, '2', 901-1111, '沖縄県那覇市', '080-9099-9999', Now(), '0', Now());
