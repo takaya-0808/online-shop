@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.ui.Model;
 
 import com.example.onlineshop.model.LoginModel;
 import com.example.onlineshop.service.LoginService;
+import com.example.onlineshop.validation.LoginValidation;
 
 @Controller
 public class LoginController {
@@ -19,20 +19,35 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String loginForm() {
-        return "user/login.html";
+    public ModelAndView loginForm() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("user/login");
+        return mav;
     }
 
     @RequestMapping(path = "/logincheck", method = RequestMethod.POST)
-    public String checkLogin(Model model, @ModelAttribute LoginModel loginModel, @RequestParam(name="button") String name) {
+    public ModelAndView checkLogin(@ModelAttribute LoginModel loginModel, @RequestParam(name="button") String name) {
 
-        System.out.println(name);
         if (!name.equals("ログイン")) {
-            return "user/login.html";
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("user/login");
+            return mav;
+        }
+
+        ModelAndView mav = LoginValidation.valid(loginModel);
+        if (!mav.isEmpty()) {
+            mav.setViewName("user/login");
+            return mav;
         }
         boolean flg = loginService.checkLoginForm(loginModel);
         String msg = flg ? "ログインに成功しました" : "ログインに失敗しました";
-        model.addAttribute("message", msg);
-        return "user/loginResult.html";
+        mav.addObject("message", msg);
+        if (flg) {
+            mav.setViewName("user/loginResult");
+        } else {
+            mav.setViewName("user/login");
+        }
+
+        return mav;
     }
 }
