@@ -18,8 +18,7 @@ public class RegisterController {
     }
 
     @RequestMapping(path = "/registercheck", method = RequestMethod.POST)
-    public ModelAndView checkRegister(ModelAndView mav, @ModelAttribute RegisterModel model) {
-
+    public String checkRegister(ModelAndView mav, @ModelAttribute RegisterModel model) {
         
         return "user/register.html";
     }

@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 public class Sex {
 
     @Autowired
-    private final JdbcTemplate jdbcTemplate;
-
-
+    private JdbcTemplate jdbcTemplate;
 
 }

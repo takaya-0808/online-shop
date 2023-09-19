@@ -1,22 +1,26 @@
-package com.example.onlineshop.model;
+package com.example.onlineshop.entity;
 
+import java.util.Date;
 
-public class RegisterModel {
+public class OnlineMemberEntity {
 
-    private String memberNo;
+    private int memberNo;
     private String password;
-    private String passwordCheck;
-    private String age;
+    private int age;
+    private String name;
     private String sex;
     private String postNumber;
     private String addr;
     private String phoneNumber;
+    private Date registerDate;
+    private String delFlg;
+    private Date lstUpdDate;
     
-    public void setMemberNo(String memberNo) {
+    public void setMemberNo(int memberNo) {
         this.memberNo = memberNo;
     }
 
-    public String getMemberNo() {
+    public int getMemberNo() {
         return this.memberNo;
     }
 
@@ -28,19 +32,19 @@ public class RegisterModel {
         return this.password;
     }
 
-    public void setPasswordCheck(String passwordCheck) {
-        this.passwordCheck = passwordCheck;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPasswordCheck() {
-        return this.passwordCheck;
+    public String getName() {
+        return this.name;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getAge() {
+    public int getAge() {
         return this.age;
     }
 
@@ -74,6 +78,30 @@ public class RegisterModel {
 
     public String getPhoneNumber() {
         return this.phoneNumber;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public Date getRegisterDate() {
+        return this.registerDate;
+    }
+
+    public void setDelFlg(String delFlg) {
+        this.delFlg = delFlg;
+    }
+
+    public String getDelFlg() {
+        return this.delFlg;
+    }
+
+    public void setLstUpdDate(Date lstUpdDate) {
+        this.lstUpdDate = lstUpdDate;
+    }
+
+    public Date getLstUpdDate() {
+        return this.lstUpdDate;
     }
 
 }
