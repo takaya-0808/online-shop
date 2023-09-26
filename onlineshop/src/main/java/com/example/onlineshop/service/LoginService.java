@@ -17,7 +17,7 @@ public class LoginService {
 
     public boolean checkLoginForm(LoginModel loginModel) {
 
-        List<OnlineMemberEntity> memberList = onlineMember.findAllMember();
+        List<OnlineMemberEntity> memberList = onlineMember.findAll();
         boolean flg = false;
         for (int i=0; i<memberList.size(); i++) {
             String id = String.valueOf(memberList.get(i).getMemberNo());

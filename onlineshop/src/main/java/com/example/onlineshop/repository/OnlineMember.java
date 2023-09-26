@@ -3,6 +3,7 @@ package com.example.onlineshop.repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.HashMap;
 import java.util.Map;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,11 +43,37 @@ public class OnlineMember {
 
     }
 
-    public List<OnlineMemberEntity> findAllMember() {
+
+    public List<OnlineMemberEntity> findAll() {
 
         String sql = "select * from ONLINE_MEMBER";
         OnlineMemberMapper memberMapper = new OnlineMemberMapper();
         return jdbcTemplate.query(sql, memberMapper);
     }
 
+    public int insert(OnlineMemberEntity entity) {
+
+        String sql = "insert into ONLINE_MEMBER (MEMBER_NO, PASSWORD, NAME, AGE, SEX, ZIP, ADDRESS, TEL, REGISTER_DATE, DELETE_FLG, LAST_UPD_DATE)" 
+                +  " values (?, ?, ?, ?, ?, ?, ?, ?, Now(), 1, Now())";
+
+        return jdbcTemplate.update(
+                            sql, 
+                            entity.getMemberNo(), 
+                            entity.getPassword(), 
+                            entity.getName(), 
+                            entity.getAge(), 
+                            entity.getSex(), 
+                            entity.getPostNumber(), 
+                            entity.getAddr(), 
+                            entity.getPhoneNumber()
+        );
+    }
+
+    public int getMaxMemberNumber() {
+
+        String sql = "select max(MEMBER_NO) from ONLINE_MEMBER";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    
 }

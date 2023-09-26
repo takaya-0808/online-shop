@@ -9,37 +9,46 @@
 
     <form action="/registercheck" method="post">
         <div>
-            <label> 会員No </label> 
-            <input type="text" name="memberNo">
+            <label> 名前 </label> 
+            <input type="text" name="memberName" th:value="${ registerModel.memberName }">
         </div>
+        <p th:text="${MemberNameError}"></p>
          <div>
             <label> パスワード </label>
-            <input type="password" name="password">
+            <input type="password" name="password" th:value="${ registerModel.password }">
          </div>
          <div>
             <label> パスワード(確認用) </label>
-            <input type="password" name="passwordCheck">
+            <input type="password" name="passwordCheck" th:value="${ registerModel.passwordCheck }">
          </div>
+         <p th:text="${PasswordError}"></p>
          <div>
             <label> 年齢 </label>
-            <input type="text" name="age">
+            <input type="text" name="age" th:value="${ registerModel.age }">
          </div>
+         <p th:text="${AgeError}"></p>
          <div>
             <label> 性別 </label>
-            <input type="text" name="sex">
+            <select name="sex">
+               <option th:each="gender : ${ genderList }" th:value="${ gender.genderId }" th:text="${ gender.genderName }" th:selected="${ gender.genderId == registerModel.sex }"></option> 
+            </select>
          </div>
+         <p th:text="${SexError}"></p>
          <div>
             <label> 郵便番号 </label>
-            <input type="text" name="postNumber">
+            <input type="text" name="postNumber" th:value="${ registerModel.postNumber }">
          </div>
+         <p th:text="${PostNumberError}"></p>
          <div>
             <label> 住所 </label>
-            <input type="text" name="addr">
+            <input type="text" name="addr" th:value="${ registerModel.addr }">
          </div>
+         <p th:text="${AddrError}"></p>
          <div>
             <label> 電話番号 </label>
-            <input type="text" name="phoneNumber">
+            <input type="text" name="phoneNumber" th:value="${ registerModel.phoneNumber }">
          </div>
+         <p th:text="${PhoneError}"></p>
 
          <button type="submit" name="check">確認</button>
          <button type="submit" name="return">戻る</button>
