@@ -3,7 +3,7 @@ package com.example.onlineshop.model;
 
 public class RegisterModel {
 
-    private String memberNo;
+    private String memberName;
     private String password;
     private String passwordCheck;
     private String age;
@@ -12,12 +12,12 @@ public class RegisterModel {
     private String addr;
     private String phoneNumber;
     
-    public void setMemberNo(String memberNo) {
-        this.memberNo = memberNo;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public String getMemberNo() {
-        return this.memberNo;
+    public String getMemberName() {
+        return this.memberName;
     }
 
     public void setPassword(String password) {
