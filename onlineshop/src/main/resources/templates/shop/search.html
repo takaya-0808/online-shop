@@ -10,24 +10,29 @@
     <form action="/searchcheck" method="get">
         <div>
             <label> カテゴリ </label> 
-            <input type="text" name="catgory">
+            <select name="goodsCategory">
+                <option th:each="category : ${ categorys }" th:value="${ category.categoryID }" th:text="${ category.categoryName }"></option> 
+            </select>
         </div>
          <div>
             <label> 商品名 </label>
-            <input type="text" name="goodname">
+            <input type="text" name="goodsName">
          </div>
          <div>
             <label> 販売元 </label>
-            <input type="text" name="goodprodcut">
+            <input type="text" name="goodsProduct">
          </div>
          <div>
             <label> 価格 </label>
-            <input type="text" name="minmoney"> 〜
-            <input type="text" name="maxmoney">
+            <input type="text" name="minMoney"> 〜
+            <input type="text" name="maxMoney">
          </div>
          <button type="submit" name="search">検索</button>
          <button type="submit" name="clear">クリア</button>
     </form>
 
+
+    <button type=“button” onclick="location.href='http://localhost:8088/menu'">メニューへ</button>
 </body>
 </html>
+

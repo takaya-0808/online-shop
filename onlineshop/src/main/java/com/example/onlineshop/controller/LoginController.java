@@ -12,6 +12,7 @@ import com.example.onlineshop.model.LoginModel;
 import com.example.onlineshop.service.LoginService;
 import com.example.onlineshop.validation.LoginValidation;
 
+
 @Controller
 public class LoginController {
 
