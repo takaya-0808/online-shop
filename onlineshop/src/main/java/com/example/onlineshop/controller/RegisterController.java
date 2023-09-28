@@ -13,6 +13,7 @@ import com.example.onlineshop.model.SexModel;
 import com.example.onlineshop.service.SexService;
 import com.example.onlineshop.service.RegisterService;
 import com.example.onlineshop.validation.RegisterValidation;
+import com.example.onlineshop.entity.OnlineMemberEntity;
 
 
 @Controller
@@ -26,7 +27,7 @@ public class RegisterController {
 
     private RegisterValidation registerValidation;
 
-    private RegisterModel registerModel;
+    private RegisterModel registerModel = new RegisterModel();
 
     @RequestMapping(path = "/register", method = RequestMethod.GET)
     public ModelAndView getLoginForm() {
@@ -40,7 +41,7 @@ public class RegisterController {
 
     @RequestMapping(path = "/registerCheck", method = RequestMethod.POST)
     public ModelAndView checkRegister(@ModelAttribute RegisterModel model, @RequestParam(name="button") String name) {
-d
+
         if (name.equals("return")) {
             return new ModelAndView("redirect:/menu");
         }
@@ -55,19 +56,26 @@ d
         }
         registerModel = model;
         mav.addObject("registerModel", registerService.checkRegister(model));
-        mav.setViewName("user/registerResult");
+        mav.setViewName("user/registerCheck");
         return mav;
     }
 
     @RequestMapping(path = "registerResult", method = RequestMethod.POST)
     public ModelAndView resultRegister(@RequestParam(name="button") String name) {
 
-        // if (registerService.insert(model) == 1) {
-        //     mav.addObject("message", "会員登録に成功しました");
-        //     mav.addObject("memberNo", registerService.getMemberNo());
-        // } else {
-        //     mav.addObject("message", "会員登録に失敗しました");
-        // }
-        return null;
+        if (name.equals("return")) {
+            registerModel = new RegisterModel();
+            return new ModelAndView("redirect:/register");
+        }
+        var mav = new ModelAndView("user/registerResult");
+        try {
+            OnlineMemberEntity entity = registerService.insert(registerModel);
+            mav.addObject("message", "会員登録に成功しました");
+            mav.addObject("memberNo", entity.getMemberNo());
+        } catch (Exception ex) {
+            System.out.println("Failed Registration");
+            mav.addObject("message", "会員登録に失敗しました");
+        }
+        return mav;
     }
 }

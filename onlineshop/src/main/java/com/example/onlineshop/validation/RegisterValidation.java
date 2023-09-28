@@ -52,7 +52,7 @@ public class RegisterValidation {
         if (model.getPhoneNumber() == null || model.getPhoneNumber().isEmpty()) {
             mav.addObject("PhoneError", "必須入力です");
         } else {
-            if (model.getPhoneNumber().matches("^[0-9]{3}-[0-9]{4}-[0-9]{4}$")) {
+            if (!model.getPhoneNumber().matches("^[0-9]{3}-[0-9]{4}-[0-9]{4}$")) {
                 mav.addObject("PhoneError", "正しい電話番号を入力してください");
             }
         }

@@ -19,7 +19,7 @@ public class RegisterService {
     private int memberNO;
 
     @Transactional(rollbackForClassName={"Exception"})
-    public int insert(RegisterModel model) {
+    public OnlineMemberEntity insert(RegisterModel model) throws Exception {
 
         OnlineMemberEntity entity = new OnlineMemberEntity();
         memberNO = onlineMember.getMaxMemberNumber()+1;
@@ -34,9 +34,9 @@ public class RegisterService {
 
         int flgNum = onlineMember.insert(entity);
         if (flgNum != 1) {
-            return 0;
+            throw new Exception();
         }
-        return flgNum;
+        return entity;
     }
 
     public int getMemberNo() {
