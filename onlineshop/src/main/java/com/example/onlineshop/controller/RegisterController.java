@@ -35,7 +35,7 @@ public class RegisterController {
         return mav;
     }
 
-    @RequestMapping(path = "/registercheck", method = RequestMethod.POST)
+    @RequestMapping(path = "/registerCheck", method = RequestMethod.POST)
     public ModelAndView checkRegister(@ModelAttribute RegisterModel model) {
 
         var mav = registerValidation.valid(model);        
@@ -44,14 +44,17 @@ public class RegisterController {
             mav.setViewName("user/register");
             return mav;
         }
-        
-        if (registerService.insert(model) == 1) {
-            mav.addObject("message", "会員登録に成功しました");
-            mav.addObject("memberNo", registerService.getMemberNo());
-        } else {
-            mav.addObject("message", "会員登録に失敗しました");
-        }
+        mav.addObject("registerModel", registerService.checkRegister(model));
+
+        // if (registerService.insert(model) == 1) {
+        //     mav.addObject("message", "会員登録に成功しました");
+        //     mav.addObject("memberNo", registerService.getMemberNo());
+        // } else {
+        //     mav.addObject("message", "会員登録に失敗しました");
+        // }
         mav.setViewName("user/registerResult");
         return mav;
     }
+
+    // @RegisterModel(path = "")
 }
