@@ -7,7 +7,7 @@
 <body>
     {user_name} さん { data_time } </br>
 
-    <form action="/registercheck" method="post">
+    <form action="/registerCheck" method="post">
         <div>
             <label> 名前 </label> 
             <input type="text" name="memberName" th:value="${ registerModel.memberName }">
@@ -50,9 +50,9 @@
          </div>
          <p th:text="${PhoneError}"></p>
 
-         <button type="submit" name="check">確認</button>
-         <button type="submit" name="return">戻る</button>
-         <button type="submit" name="clear">クリア</button>
+         <button type="submit" name="button" value="check">確認</button>
+         <button type="submit" name="button" value="return">戻る</button>
+         <button type="submit" name="button" value="clear">クリア</button>
     </form>
     
 

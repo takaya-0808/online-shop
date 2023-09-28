@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlineshop.repository.OnlineMember;
 import com.example.onlineshop.model.RegisterModel;
+import com.example.onlineshop.model.RegisterCheckModel;
 import com.example.onlineshop.entity.OnlineMemberEntity;
 
 
@@ -40,6 +41,19 @@ public class RegisterService {
 
     public int getMemberNo() {
         return memberNO;
+    }
+
+    public RegisterCheckModel checkRegister(RegisterModel model) {
+
+        RegisterCheckModel registerCheckModel = new RegisterCheckModel();
+        registerCheckModel.setMemberName(model.getMemberName());
+        registerCheckModel.setAge(model.getAge());
+        registerCheckModel.setAddr(model.getAddr());
+        String gender = (model.getSex() == "1") ? "女" : "男";
+        registerCheckModel.setSex(gender);
+        registerCheckModel.setPostNumber(model.getPostNumber());
+        registerCheckModel.setPhoneNumber(model.getPhoneNumber());
+        return registerCheckModel;
     }
     
 

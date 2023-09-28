@@ -7,7 +7,45 @@
 
     <body>
         ${user_name} さん ${ data_time } </br>
-        <p th:text="${message}"></p>
-        <p th:text="${memberNo}"></p>
+        <form action="/registerResult" method="post">
+        
+            
+                <table>
+
+                    <tr>
+                        <th>名前</th>
+                        <td> <p th:text="${ registerModel.memberName }" ></p></td>
+                    </tr>
+    
+                    <tr>
+                        <th>年齢</th>
+                        <td> <p th:text="${ registerModel.age }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>性別</th>
+                        <td> <p th:text="${ registerModel.sex }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>郵便番号</th>
+                        <td> <p th:text="${ registerModel.postNumber }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>住所</th>
+                        <td> <p th:text="${ registerModel.addr }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>電話番号</th>
+                        <td> <p th:text="${ registerModel.phoneNumber }" ></p> </td>
+                    </tr>
+    
+                </table>
+
+    
+            <button type="submit" name="button" value="registration">確認</button>
+            <button type="submit" name="button" value="return">戻る</button>
     </body>
 </html>
