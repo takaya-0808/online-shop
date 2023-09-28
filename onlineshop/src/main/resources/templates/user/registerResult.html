@@ -7,9 +7,9 @@
 
     <body>
         ${user_name} さん ${ data_time } </br>
-        <form action="/registerCheck" method="post">
+        <form action="/registerResult" method="post">
         
-            <div th:if="${registerModel}">
+            
                 <table>
 
                     <tr>
@@ -43,10 +43,9 @@
                     </tr>
     
                 </table>
-            </div>
+
     
-            <button type="submit" name="check">確認</button>
-            <button type="submit" name="return">戻る</button>
-            <button type="submit" name="clear">クリア</button>
+            <button type="submit" name="button" value="registration">確認</button>
+            <button type="submit" name="button" value="return">戻る</button>
     </body>
 </html>
