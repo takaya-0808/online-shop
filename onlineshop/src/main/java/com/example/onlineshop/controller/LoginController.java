@@ -5,11 +5,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.onlineshop.model.LoginModel;
+import com.example.onlineshop.model.SessionModel;
 import com.example.onlineshop.service.LoginService;
+import com.example.onlineshop.service.SessionService;
 import com.example.onlineshop.validation.LoginValidation;
 
 
@@ -17,16 +21,22 @@ import com.example.onlineshop.validation.LoginValidation;
 public class LoginController {
 
     @Autowired
+    private SessionService sessionService = new SessionService();
+
+    @Autowired
     private LoginService loginService;
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public ModelAndView loginForm() {
         ModelAndView mav = new ModelAndView();
+        String sessionID = sessionService.getSessionID();
+        System.out.println(sessionID);
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
         mav.setViewName("user/login");
         return mav;
     }
 
-    @RequestMapping(path = "/logincheck", method = RequestMethod.POST)
+    @RequestMapping(path = "/loginCheck", method = RequestMethod.POST)
     public ModelAndView checkLogin(@ModelAttribute LoginModel loginModel, @RequestParam(name="button") String name) {
 
         if (!name.equals("ログイン")) {
@@ -40,10 +50,12 @@ public class LoginController {
             mav.setViewName("user/login");
             return mav;
         }
-        boolean flg = loginService.checkLoginForm(loginModel);
-        String msg = flg ? "ログインに成功しました" : "ログインに失敗しました";
+        SessionModel sessionModel = loginService.checkLoginForm(loginModel);
+        String msg = (sessionModel!=null) ? "ログインに成功しました" : "ログインに失敗しました";
+        String sessionID = sessionService.getSessionID();
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
         mav.addObject("message", msg);
-        if (flg) {
+        if (sessionModel!=null) {
             mav.setViewName("user/loginResult");
         } else {
             mav.setViewName("user/login");

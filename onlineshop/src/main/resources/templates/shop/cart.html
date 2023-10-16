@@ -5,7 +5,7 @@
     <title>商品検索画面</title>
 </head>
 <body>
-    {user_name} さん { data_time } </br>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
 
     <form action="/searchcheck" method="get">
         <table border="1">

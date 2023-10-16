@@ -51,6 +51,13 @@ public class OnlineMember {
         return jdbcTemplate.query(sql, memberMapper);
     }
 
+    public OnlineMemberEntity findById(String id) {
+
+        String sql = "select * from ONLINE_MEMBER where MEMBER_NO = ?";
+        OnlineMemberMapper memberMapper = new OnlineMemberMapper();
+        return jdbcTemplate.queryForObject(sql, memberMapper, id);
+    }
+
     public int insert(OnlineMemberEntity entity) {
 
         String sql = "insert into ONLINE_MEMBER (MEMBER_NO, PASSWORD, NAME, AGE, SEX, ZIP, ADDRESS, TEL, REGISTER_DATE, DELETE_FLG, LAST_UPD_DATE)" 

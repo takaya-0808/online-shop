@@ -5,8 +5,8 @@
     <title>メニュー画面</title>
 </head>
 <body>
-    {user_name} さん { data_time } </br>
-    
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+
     <a href="/register">新規会員登録</a> </br>
     <a href="/edit">会員情報修正・削除</a> </br>
     <a href="/search">商品検索</a> </br>
