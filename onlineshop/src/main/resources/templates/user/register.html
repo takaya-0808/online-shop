@@ -5,9 +5,10 @@
     <title>会員登録画面</title>
 </head>
 <body>
-    {user_name} さん { data_time } </br>
 
-    <form action="/registerCheck" method="post">
+   <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+
+   <form action="/registerCheck" method="post">
         <div>
             <label> 名前 </label> 
             <input type="text" name="memberName" th:value="${ registerModel.memberName }">
@@ -53,7 +54,7 @@
          <button type="submit" name="button" value="check">確認</button>
          <button type="submit" name="button" value="return">戻る</button>
          <button type="submit" name="button" value="clear">クリア</button>
-    </form>
+   </form>
     
 
 </body>

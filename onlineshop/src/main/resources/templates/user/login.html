@@ -5,9 +5,9 @@
     <title>会員ログイン画面</title>
 </head>
 <body>
-    ${user_name} さん ${ data_time } </br>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
 
-    <form action="/logincheck" method="post">
+    <form action="/loginCheck" method="post">
         <table border="0">
             <tr>
                 <th align="left" valign="top"> 会員No </th>

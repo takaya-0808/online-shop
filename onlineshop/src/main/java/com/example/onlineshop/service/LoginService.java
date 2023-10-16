@@ -7,27 +7,32 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlineshop.repository.OnlineMember;
 import com.example.onlineshop.model.LoginModel;
+import com.example.onlineshop.model.SessionModel;
 import com.example.onlineshop.entity.OnlineMemberEntity;
 
 @Service
-public class LoginService {
+public class LoginService implements ILoginService {
 
     @Autowired
     private OnlineMember onlineMember;
 
-    public boolean checkLoginForm(LoginModel loginModel) {
+    public SessionModel checkLoginForm(LoginModel loginModel) {
 
         List<OnlineMemberEntity> memberList = onlineMember.findAll();
-        boolean flg = false;
+        SessionModel sessionModel = new SessionModel();
         for (int i=0; i<memberList.size(); i++) {
             String id = String.valueOf(memberList.get(i).getMemberNo());
             String pass = memberList.get(i).getPassword();
             if (id.equals(loginModel.getMemberNo()) && pass.equals(loginModel.getPassword())) {
-                flg = true;
-                break;
+                OnlineMemberEntity entity = onlineMember.findById(loginModel.getMemberNo());
+                sessionModel.setSessionID(String.valueOf(entity.getMemberNo()));
+                sessionModel.setSessionName(entity.getName());
+                return sessionModel;
             }
         }
-        return flg;
+        return null;
     }
+
+
 
 }

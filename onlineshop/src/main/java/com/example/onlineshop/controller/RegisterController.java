@@ -12,8 +12,8 @@ import com.example.onlineshop.model.RegisterModel;
 import com.example.onlineshop.model.SexModel;
 import com.example.onlineshop.service.SexService;
 import com.example.onlineshop.service.RegisterService;
+import com.example.onlineshop.service.SessionService;
 import com.example.onlineshop.validation.RegisterValidation;
-
 
 @Controller
 public class RegisterController {
@@ -24,6 +24,9 @@ public class RegisterController {
     @Autowired
     private RegisterService registerService;
 
+    @Autowired
+    private SessionService sessionService;
+
     private RegisterValidation registerValidation;
 
     private RegisterModel registerModel;
@@ -32,15 +35,19 @@ public class RegisterController {
     public ModelAndView getLoginForm() {
 
         var mav = new ModelAndView();
+        sessionService = new SessionService();
         mav.addObject("genderList", sexService.getSexList());
         mav.addObject("registerModel", new RegisterModel());
+        String sessionID = sessionService.getSessionID();
+        System.out.println(sessionID);
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
         mav.setViewName("user/register");
         return mav;
     }
 
     @RequestMapping(path = "/registerCheck", method = RequestMethod.POST)
     public ModelAndView checkRegister(@ModelAttribute RegisterModel model, @RequestParam(name="button") String name) {
-d
+
         if (name.equals("return")) {
             return new ModelAndView("redirect:/menu");
         }
@@ -54,6 +61,8 @@ d
             return mav;
         }
         registerModel = model;
+        String sessionID = sessionService.getSessionID();
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
         mav.addObject("registerModel", registerService.checkRegister(model));
         mav.setViewName("user/registerResult");
         return mav;

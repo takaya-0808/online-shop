@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        ${user_name} さん ${ data_time } </br>
+        <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
         <p th:text="${message}"></p>
     </body>
 </html>
