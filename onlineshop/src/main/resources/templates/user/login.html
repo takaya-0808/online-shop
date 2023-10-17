@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会員ログイン画面</title>
+</head>
+<body>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+
+    <form action="/loginCheck" method="post">
+        <table border="0">
+            <tr>
+                <th align="left" valign="top"> 会員No </th>
+                <td> <input type="text" name="memberNo"> </td>
+            </tr>
+            <p th:text="${memberNoError}"></p>            
+            <tr>
+                <th align="left" valign="top"> パスワード </th>
+                <td> <input type="password" name="password"> </td>
+            </tr>
+            <p th:text="${passwordError}"></p>
+        </table>
+        <button type="submit" name="button" value="ログイン"> ログイン </button>
+        <button type="submit" name="button" value="クリア"> クリア </button>
+    </form>
+    
+    <a href="/register"> 新規会員登録はこちら </a> 
+
+</body>
+</html>

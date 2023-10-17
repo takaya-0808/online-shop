@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>会員登録結果画面</title>
+    </head>
+
+    <body>
+        <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+        <form action="/registerResult" method="post">
+        
+            
+                <table>
+
+                    <tr>
+                        <th>名前</th>
+                        <td> <p th:text="${ registerModel.memberName }" ></p></td>
+                    </tr>
+    
+                    <tr>
+                        <th>年齢</th>
+                        <td> <p th:text="${ registerModel.age }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>性別</th>
+                        <td> <p th:text="${ registerModel.sex }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>郵便番号</th>
+                        <td> <p th:text="${ registerModel.postNumber }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>住所</th>
+                        <td> <p th:text="${ registerModel.addr }" ></p> </td>
+                    </tr>
+    
+                    <tr>
+                        <th>電話番号</th>
+                        <td> <p th:text="${ registerModel.phoneNumber }" ></p> </td>
+                    </tr>
+    
+                </table>
+
+    
+            <button type="submit" name="button" value="registration">確認</button>
+            <button type="submit" name="button" value="return">戻る</button>
+    </body>
+</html>

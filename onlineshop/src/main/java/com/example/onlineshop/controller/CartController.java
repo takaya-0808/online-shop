@@ -7,21 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.onlineshop.service.SessionService;
-import com.example.onlineshop.model.SessionModel;
-
-
 
 @Controller
-public class MenuController {
+public class CartController {
 
     @Autowired
-    private SessionService sessionService = new SessionService();
+    private SessionService sessionService = sessionService = new SessionService();
 
-    @RequestMapping(path = "/menu", method = RequestMethod.GET)
-    public ModelAndView index() {
+    @RequestMapping(path = "/cart", method = RequestMethod.GET)
+    public ModelAndView getLoginForm() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
-        mav.setViewName("common/menu");
+        String sessionID = sessionService.getSessionID();
+        System.out.println(sessionID);
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
+        mav.setViewName("shop/cart");
         return mav;
     }
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品検索画面</title>
+</head>
+<body>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+
+    <form action="/searchcheck" method="get">
+        <table border="1">
+            <tr>
+                <th>選択</th>
+                <th>商品コード</th>
+                <th>商品名</th>
+                <th>販売元</th>
+                <th>価格</th>
+                <th>購入数</th>
+            </tr>
+        </table>
+
+        <button type="submit" name="clear">取り消し</button>
+        <button type="submit" name="cancel">買い物をやめる</button>
+        <button type="submit" name="order">注文する</button>
+        <button type="submit" name="menu">メニューへ</button>
+    </form>
+
+</body>
+</html>
