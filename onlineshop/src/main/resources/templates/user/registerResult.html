@@ -8,7 +8,9 @@
     <body>
         <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
         <p th:text="${ msg }"></p>
-        <p th:text="${ member_msg }"></p>
+        <th:block th:if="${ member_msg == null }">
+            <p th:text="${ member_msg }"></p>
+        </th:block>
         <button type="button" onclick="location.href='menu'">メニューへ</button>
     </body>
 </html>
