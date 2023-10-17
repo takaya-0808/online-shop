@@ -38,9 +38,7 @@ public class RegisterController {
         sessionService = new SessionService();
         mav.addObject("genderList", sexService.getSexList());
         mav.addObject("registerModel", new RegisterModel());
-        String sessionID = sessionService.getSessionID();
-        System.out.println(sessionID);
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.setViewName("user/register");
         return mav;
     }
@@ -61,22 +59,28 @@ public class RegisterController {
             return mav;
         }
         registerModel = model;
-        String sessionID = sessionService.getSessionID();
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.addObject("registerModel", registerService.checkRegister(model));
-        mav.setViewName("user/registerResult");
+        mav.setViewName("user/registerCheck");
         return mav;
     }
 
     @RequestMapping(path = "registerResult", method = RequestMethod.POST)
     public ModelAndView resultRegister(@RequestParam(name="button") String name) {
 
-        // if (registerService.insert(model) == 1) {
-        //     mav.addObject("message", "会員登録に成功しました");
-        //     mav.addObject("memberNo", registerService.getMemberNo());
-        // } else {
-        //     mav.addObject("message", "会員登録に失敗しました");
-        // }
-        return null;
+        if (name.equals("return")) {
+            return new ModelAndView("redirect:/register");
+        }
+        String memberID = registerService.insert(registerModel);
+        ModelAndView mav = new ModelAndView();
+        if (memberID != null) {
+            mav.addObject("member_msg", "会員番号は" + memberID + "です。");
+            mav.addObject("meg", "登録に完了しました");
+        } else {
+            mav.addObject("meg", "登録に失敗しました");
+        }
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.setViewName("user/registerResult");
+        return mav;
     }
 }
