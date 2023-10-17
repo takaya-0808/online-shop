@@ -8,6 +8,7 @@ import com.example.onlineshop.repository.OnlineMember;
 import com.example.onlineshop.model.RegisterModel;
 import com.example.onlineshop.model.RegisterCheckModel;
 import com.example.onlineshop.entity.OnlineMemberEntity;
+import com.example.onlineshop.util.Uuid;
 
 
 @Service
@@ -19,11 +20,12 @@ public class RegisterService {
     private int memberNO;
 
     @Transactional(rollbackForClassName={"Exception"})
-    public int insert(RegisterModel model) {
+    public String insert(RegisterModel model) {
 
         OnlineMemberEntity entity = new OnlineMemberEntity();
-        memberNO = onlineMember.getMaxMemberNumber()+1;
-        entity.setMemberNo(memberNO);
+        var uuid = new Uuid();
+        int memberID = uuid.createMemberID();
+        entity.setMemberNo(memberID);
         entity.setAddr(model.getAddr());
         entity.setPassword(model.getPassword());
         entity.setAge(Integer.parseInt(model.getAge()));
@@ -34,13 +36,9 @@ public class RegisterService {
 
         int flgNum = onlineMember.insert(entity);
         if (flgNum != 1) {
-            return 0;
+            return null;
         }
-        return flgNum;
-    }
-
-    public int getMemberNo() {
-        return memberNO;
+        return Integer.valueOf(memberID).toString();
     }
 
     public RegisterCheckModel checkRegister(RegisterModel model) {

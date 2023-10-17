@@ -23,7 +23,8 @@ public class LoginService implements ILoginService {
         for (int i=0; i<memberList.size(); i++) {
             String id = String.valueOf(memberList.get(i).getMemberNo());
             String pass = memberList.get(i).getPassword();
-            if (id.equals(loginModel.getMemberNo()) && pass.equals(loginModel.getPassword())) {
+            String flgId = memberList.get(i).getDelFlg();
+            if (id.equals(loginModel.getMemberNo()) && pass.equals(loginModel.getPassword()) && flgId.equals("1")) {
                 OnlineMemberEntity entity = onlineMember.findById(loginModel.getMemberNo());
                 sessionModel.setSessionID(String.valueOf(entity.getMemberNo()));
                 sessionModel.setSessionName(entity.getName());

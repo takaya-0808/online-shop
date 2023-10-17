@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import com.example.onlineshop.model.SessionModel;
+import com.example.onlineshop.util.Uuid;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,8 +27,8 @@ public class SessionService {
     public String getSessionID() {
         
         if (sessionID.isEmpty()) {
-            UUID uuid = UUID.randomUUID();
-            sessionID = uuid.toString();
+            var uuid = new Uuid();
+            sessionID = uuid.createSessionID();
         }
     
         return sessionID;
@@ -41,30 +42,6 @@ public class SessionService {
         String strDate = dtf1.format(nowDate);
         sessionModel.setSessionTime(strDate);
         return sessionModel;
-    }
-
-    public SessionModel getRedisSession(String sessionID) {
-        // セッション管理
-        SessionModel sessionModel = new SessionModel();
-        if (!redisTemplate.hasKey(sessionID)) {
-            sessionModel.setSessionName("ゲストさん");
-        } else {
-            sessionModel = redisTemplate.opsForValue().get(sessionID);
-        }
-        LocalDateTime nowDate = LocalDateTime.now();
-        String strDate = dtf1.format(nowDate);
-        sessionModel.setSessionTime(strDate);
-        return sessionModel;
-    }
-
-    public SessionModel getRedisSession(String sessionID, SessionModel sessionModel) {
-        // セッション管理
-        SessionModel model = redisTemplate.opsForValue().get(sessionID);
-        model.setSessionName(sessionModel.getSessionName());
-        LocalDateTime nowDate = LocalDateTime.now();
-        String strDate = dtf1.format(nowDate);
-        model.setSessionTime(strDate);
-        return model;
     }
 
 }
