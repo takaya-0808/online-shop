@@ -1,4 +1,4 @@
-package com.example.example.onlineshop.model;
+package com.example.onlineshop.model;
 
 public class SearchModel {
 

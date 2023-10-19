@@ -26,7 +26,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    @RequestMapping(path = "/loginForm", method = RequestMethod.GET)
     public ModelAndView loginForm() {
         ModelAndView mav = new ModelAndView();
         String sessionID = sessionService.getSessionID();

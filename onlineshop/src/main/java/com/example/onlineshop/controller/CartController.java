@@ -14,7 +14,7 @@ public class CartController {
     @Autowired
     private SessionService sessionService = sessionService = new SessionService();
 
-    @RequestMapping(path = "/cart", method = RequestMethod.GET)
+    @RequestMapping(path = "/cartForm", method = RequestMethod.GET)
     public ModelAndView getLoginForm() {
         ModelAndView mav = new ModelAndView();
         String sessionID = sessionService.getSessionID();

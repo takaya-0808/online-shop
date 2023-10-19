@@ -93,3 +93,13 @@ insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (8, '花', Now(
 
 insert into ONLINE_MEMBER (MEMBER_NO, PASSWORD, NAME, AGE, SEX, ZIP, ADDRESS, TEL, REGISTER_DATE, DELETE_FLG, LAST_UPD_DATE) 
                       value (1, 'pass', '両面宿儺', 1000, '2', 901-1111, '沖縄県那覇市', '080-9099-9999', Now(), '0', Now());
+
+
+insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
+                      value (1, 1, "ホゲホゲ", "中国", 10, Now(), 1290, "./image/sample1.png", "見た目コットンでなめらかな肌触り。レイヤリングしやすく、いろいろな着こなしに使える。", "1", Now());
+
+insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
+                      value (2, 2, "フガフガ", "中国", 5, Now(), 2990, "./image/sample2.png", "ゆったりはけるワイドフィット。ウエストはゴム仕様で快適なはき心地。", "1", Now());
+
+insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
+                      value (3, 3, "メモメモ", "中国", 2, Now(), 2990, "./image/sample2.png", "ゆったりはけるワイドフィット。ウエストはゴム仕様で快適なはき心地。", "1", Now());
