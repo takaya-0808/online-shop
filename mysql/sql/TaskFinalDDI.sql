@@ -39,7 +39,7 @@ create table ONLINE_CATEGORY(
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
 
 create table ONLINE_PRODUCT( 
-  PRODUCT_CODE varchar (14) primary key
+  PRODUCT_CODE varchar (50) primary key
   , CATEGORY_ID integer NOT NULL
   , PRODUCT_NAME varchar (50) NOT NULL
   , MAKER varchar (20) NOT NULL
@@ -59,7 +59,7 @@ create table ONLINE_ORDER(
   , TOTAL_MONEY BIGINT NOT NULL
   , TOTAL_TAX BIGINT NOT NULL
   , ORDER_DATE date NOT NULL
-  , COLLECT_NO varchar (16) NOT NULL UNIQUE KEY
+  , COLLECT_NO varchar (50) NOT NULL UNIQUE KEY
   , LAST_UPD_DATE timestamp NOT NULL
   , foreign key (MEMBER_NO) references ONLINE_MEMBER(MEMBER_NO)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
