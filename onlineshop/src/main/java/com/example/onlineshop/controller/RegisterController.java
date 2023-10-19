@@ -31,7 +31,7 @@ public class RegisterController {
 
     private RegisterModel registerModel;
 
-    @RequestMapping(path = "/register", method = RequestMethod.GET)
+    @RequestMapping(path = "/registerForm", method = RequestMethod.GET)
     public ModelAndView getLoginForm() {
 
         var mav = new ModelAndView();
@@ -50,7 +50,7 @@ public class RegisterController {
             return new ModelAndView("redirect:/menu");
         }
         if (name.equals("clear")) {
-            return new ModelAndView("redirect:/register");
+            return new ModelAndView("redirect:/registerForm");
         }
         var mav = registerValidation.valid(model);        
         if (!mav.isEmpty()) {
@@ -69,7 +69,7 @@ public class RegisterController {
     public ModelAndView resultRegister(@RequestParam(name="button") String name) {
 
         if (name.equals("return")) {
-            return new ModelAndView("redirect:/register");
+            return new ModelAndView("redirect:/registerForm");
         }
         String memberID = registerService.insert(registerModel);
         ModelAndView mav = new ModelAndView();

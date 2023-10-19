@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 
 import com.example.onlineshop.service.CategoryService;
 import com.example.onlineshop.service.SessionService;
+import com.example.onlineshop.service.SearchService;
 import com.example.onlineshop.model.GoodsCategoryModel;
-import com.example.example.onlineshop.model.SearchModel;
+import com.example.onlineshop.model.SearchModel;
+import com.example.onlineshop.model.SearchProductModel;
 
 
 @Controller
@@ -23,16 +25,17 @@ public class SearchController {
     private CategoryService categoryService;
 
     @Autowired
+    private SearchService searchService;
+
+    @Autowired
     private SessionService sessionService = new SessionService();
 
-    @RequestMapping(path = "/search", method = RequestMethod.GET)
+    @RequestMapping(path = "/searchForm", method = RequestMethod.GET)
     public ModelAndView showSearchForm() {
-        ModelAndView mav = new ModelAndView();
-        List<GoodsCategoryModel> categoryList = categoryService.select();
-        mav.addObject("categorys", categoryList);
-        String sessionID = sessionService.getSessionID();
-        System.out.println(sessionID);
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
+
+        var mav = new ModelAndView();
+        mav.addObject("categorys", categoryService.select());
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
         return mav;
     }
@@ -40,8 +43,16 @@ public class SearchController {
     @RequestMapping(path = "/searchResult", method= RequestMethod.GET)
     public ModelAndView searchGoods(@ModelAttribute SearchModel searchModel, @RequestParam(name="button") String name) {
 
+        var mav = new ModelAndView();
+        if (name.equals("clear")) {
+            return new ModelAndView("redirect:/searchForm");
+        }
         
-        return null;
+        mav.addObject("products", searchService.findAll());
+        mav.addObject("categorys", categoryService.select());
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.setViewName("shop/search");
+        return mav;
     }
 
 }

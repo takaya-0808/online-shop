@@ -39,7 +39,7 @@ create table ONLINE_CATEGORY(
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
 
 create table ONLINE_PRODUCT( 
-  PRODUCT_CODE varchar (14) primary key
+  PRODUCT_CODE varchar (50) primary key
   , CATEGORY_ID integer NOT NULL
   , PRODUCT_NAME varchar (50) NOT NULL
   , MAKER varchar (20) NOT NULL
@@ -59,7 +59,7 @@ create table ONLINE_ORDER(
   , TOTAL_MONEY BIGINT NOT NULL
   , TOTAL_TAX BIGINT NOT NULL
   , ORDER_DATE date NOT NULL
-  , COLLECT_NO varchar (16) NOT NULL UNIQUE KEY
+  , COLLECT_NO varchar (50) NOT NULL UNIQUE KEY
   , LAST_UPD_DATE timestamp NOT NULL
   , foreign key (MEMBER_NO) references ONLINE_MEMBER(MEMBER_NO)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8; 
@@ -93,3 +93,13 @@ insert into ONLINE_CATEGORY (CTGR_ID, NAME, LAST_UPD_DATE) value (8, '花', Now(
 
 insert into ONLINE_MEMBER (MEMBER_NO, PASSWORD, NAME, AGE, SEX, ZIP, ADDRESS, TEL, REGISTER_DATE, DELETE_FLG, LAST_UPD_DATE) 
                       value (1, 'pass', '両面宿儺', 1000, '2', 901-1111, '沖縄県那覇市', '080-9099-9999', Now(), '0', Now());
+
+
+insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
+                      value (1, 1, "ホゲホゲ", "中国", 10, Now(), 1290, "./image/sample1.png", "見た目コットンでなめらかな肌触り。レイヤリングしやすく、いろいろな着こなしに使える。", "1", Now());
+
+insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
+                      value (2, 2, "フガフガ", "中国", 5, Now(), 2990, "./image/sample2.png", "ゆったりはけるワイドフィット。ウエストはゴム仕様で快適なはき心地。", "1", Now());
+
+insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
+                      value (3, 3, "メモメモ", "中国", 2, Now(), 2990, "./image/sample2.png", "ゆったりはけるワイドフィット。ウエストはゴム仕様で快適なはき心地。", "1", Now());
