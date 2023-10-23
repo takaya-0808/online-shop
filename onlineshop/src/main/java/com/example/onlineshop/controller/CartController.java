@@ -17,9 +17,7 @@ public class CartController {
     @RequestMapping(path = "/cartForm", method = RequestMethod.GET)
     public ModelAndView getLoginForm() {
         ModelAndView mav = new ModelAndView();
-        String sessionID = sessionService.getSessionID();
-        System.out.println(sessionID);
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionID));
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.setViewName("shop/cart");
         return mav;
     }

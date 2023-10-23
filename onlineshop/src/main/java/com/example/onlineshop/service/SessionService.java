@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.data.redis.core.RedisTemplate;
 
 import com.example.onlineshop.model.SessionModel;
 import com.example.onlineshop.util.Uuid;
@@ -16,8 +15,6 @@ import javax.servlet.http.HttpSession;
 
 @Service
 public class SessionService {
-
-    private RedisTemplate<String, SessionModel> redisTemplate = new RedisTemplate<>();
 
     public static DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     public static String sessionID = "";

@@ -12,7 +12,6 @@ services:
     working_dir: /srv
     depends_on:
       - mysql
-      - redis
 
   mysql:
     build: 
@@ -30,10 +29,3 @@ services:
       MYSQL_USER: docker
       MYSQL_PASSWORD: docker
       TZ: "Asia/Tokyo"
-
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
-    volumes:
-      - "./redis/data/redis:/data"
