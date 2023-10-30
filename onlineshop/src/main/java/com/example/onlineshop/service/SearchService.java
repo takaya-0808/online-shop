@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlineshop.repository.OnlineProduct;
 import com.example.onlineshop.model.SearchProductModel;
+import com.example.onlineshop.model.GoodsDetailModel;
+import com.example.onlineshop.model.SearchModel;
 import com.example.onlineshop.entity.OnlineProductEntity;
 
 @Service
@@ -16,11 +18,10 @@ public class SearchService {
     @Autowired
     private OnlineProduct onlineProduct;
 
-    public List<SearchProductModel> searchProductModel = new ArrayList<SearchProductModel>();
+    public List<SearchProductModel> findAll(SearchModel searchModel) {
 
-    public List<SearchProductModel> findAll() {
-
-        List<OnlineProductEntity> entityList = onlineProduct.findAll();
+        List<SearchProductModel> searchProductModel = new ArrayList<SearchProductModel>();
+        List<OnlineProductEntity> entityList = onlineProduct.findAll(searchModel);
         for (int i=0; i<entityList.size(); i++) {
             SearchProductModel model = new SearchProductModel();
             model.setProductCode(entityList.get(i).getProductCode());
@@ -31,6 +32,19 @@ public class SearchService {
             searchProductModel.add(model);
         }
         return searchProductModel;
+    }
+
+    public GoodsDetailModel findOne(String productCode) {
+
+        GoodsDetailModel detailModel = new GoodsDetailModel();
+        OnlineProductEntity entity = onlineProduct.findOne(productCode);
+        detailModel.setProductCode(entity.getProductCode());
+        detailModel.setProductName(entity.getProductName());
+        detailModel.setProductImageName(entity.getPictureName());
+        detailModel.setMemo(entity.getMemo());
+        detailModel.setProductPrice(String.valueOf(entity.getUnitPrice()));
+        
+        return detailModel;
     }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.example.onlineshop.entity.OnlineProductEntity;
+import com.example.onlineshop.model.SearchModel;
 
 @Repository
 public class OnlineProduct {
@@ -43,10 +44,14 @@ public class OnlineProduct {
         }
     }
 
-    public List<OnlineProductEntity> findAll() {
+    public List<OnlineProductEntity> findAll(SearchModel searchModel) {
         String sql = "select * from ONLINE_PRODUCT";
-        OnlineProductMapper memberMapper = new OnlineProductMapper();
-        return jdbcTemplate.query(sql, memberMapper);
+        return jdbcTemplate.query(sql, new OnlineProductMapper());
+    }
+
+    public OnlineProductEntity findOne(String productCode) {
+        String sql = "select * from ONLINE_PRODUCT where PRODUCT_CODE = ?";
+        return jdbcTemplate.queryForObject(sql, new OnlineProductMapper(), productCode);
     }
 
 }

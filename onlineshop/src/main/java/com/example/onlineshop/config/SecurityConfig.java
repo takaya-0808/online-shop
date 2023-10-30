@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -13,12 +14,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorize -> authorize
-            .requestMatchers("/loginForm", "/registerForm", "/menu").permitAll() 
-            .anyRequest().authenticated()
-            )
+            .requestMatchers("/menu", "/search*", "/login*", "/register*", "/cart*", "/img/**").permitAll() 
+            .anyRequest().authenticated())
             .formLogin(form -> form
-                .loginPage("/loginForm") // ログインページのパスを指定
-            );
+            .loginPage("/loginForm"));
         return http.build();
     }
 }
