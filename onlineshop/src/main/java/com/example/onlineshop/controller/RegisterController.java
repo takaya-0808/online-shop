@@ -38,7 +38,7 @@ public class RegisterController {
         sessionService = new SessionService();
         mav.addObject("genderList", sexService.getSexList());
         mav.addObject("registerModel", new RegisterModel());
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("user/register");
         return mav;
     }
@@ -59,7 +59,7 @@ public class RegisterController {
             return mav;
         }
         registerModel = model;
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.addObject("registerModel", registerService.checkRegister(model));
         mav.setViewName("user/registerCheck");
         return mav;
@@ -79,7 +79,7 @@ public class RegisterController {
         } else {
             mav.addObject("meg", "登録に失敗しました");
         }
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("user/registerResult");
         return mav;
     }

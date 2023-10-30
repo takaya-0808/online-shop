@@ -20,7 +20,7 @@ public class MenuController {
     @RequestMapping(path = "/menu", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("common/menu");
         return mav;
     }

@@ -29,7 +29,7 @@ public class LoginController {
     @RequestMapping(path = "/loginForm", method = RequestMethod.GET)
     public ModelAndView loginForm() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("user/login");
         return mav;
     }
@@ -50,7 +50,7 @@ public class LoginController {
         }
         SessionModel sessionModel = loginService.checkLoginForm(loginModel);
         String msg = (sessionModel!=null) ? "ログインに成功しました" : "ログインに失敗しました";
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.addObject("message", msg);
         if (sessionModel!=null) {
             mav.setViewName("user/loginResult");

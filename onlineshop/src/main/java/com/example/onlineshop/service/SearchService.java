@@ -38,6 +38,7 @@ public class SearchService {
 
         GoodsDetailModel detailModel = new GoodsDetailModel();
         OnlineProductEntity entity = onlineProduct.findOne(productCode);
+        detailModel.setProductCode(entity.getProductCode());
         detailModel.setProductName(entity.getProductName());
         detailModel.setProductImageName(entity.getPictureName());
         detailModel.setMemo(entity.getMemo());

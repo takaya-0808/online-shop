@@ -37,7 +37,7 @@ public class SearchController {
 
         var mav = new ModelAndView();
         mav.addObject("categories", categoryService.select());
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
         return mav;
     }
@@ -51,17 +51,17 @@ public class SearchController {
         }
         mav.addObject("categories", categoryService.select());
         mav.addObject("products", searchService.findAll(searchModel));
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
         return mav;
     }
 
     @RequestMapping(path = "/searchDetail", method= RequestMethod.GET)
     public ModelAndView showDetailGoods(@RequestParam("productCode") String productCode) {
-        
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("product", searchService.findOne(productCode));
-        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("shop/searchDetail");
         return mav;
     }

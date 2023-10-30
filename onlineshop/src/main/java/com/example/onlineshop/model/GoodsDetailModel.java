@@ -3,11 +3,20 @@ package com.example.onlineshop.model;
 
 public class GoodsDetailModel {
 
+    private String productCode;
     private String productName;
     private String productImageName;
     private String memo;
     private String productPrice;
     private String productNumber;
+
+    public String getProductCode() {
+        return this.productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
 
     public String getProductName() {
         return this.productName;

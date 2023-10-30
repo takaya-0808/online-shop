@@ -8,7 +8,7 @@
 
     <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
 
-    <form action="/cartForm" method="get">
+    <form th:action="@{/cartForm}" method="get">
 
         <table>
 
@@ -39,8 +39,8 @@
             
         </table>
 
-        <button type="submit" name="button" value="cart">お買い物カゴに入れる</button>
-        <button type="submit" name="button" value="return">戻る</button>
+        <button type="submit" name="button" th:value="*{ product.productCode }">お買い物カゴに入れる</button>
+        <button type="submit" name="button" th:value="return">戻る</button>
 
     </form>
 

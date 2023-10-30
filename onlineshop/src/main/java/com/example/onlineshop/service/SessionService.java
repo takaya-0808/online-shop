@@ -18,6 +18,7 @@ public class SessionService {
 
     public static DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     public static String sessionID = "";
+    public static String productID = "";
 
     public SessionService() {}
     
@@ -31,7 +32,7 @@ public class SessionService {
         return sessionID;
     }
 
-    public SessionModel getSeesionModel(String sessionID) {
+    public SessionModel getSessionModel(String sessionID) {
 
         SessionModel sessionModel = new SessionModel();
         sessionModel.setSessionName("ゲストさん");
