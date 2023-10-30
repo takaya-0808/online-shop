@@ -11,7 +11,7 @@
         <div>
             <label> カテゴリ </label> 
             <select name="goodsCategory">
-                <option th:each="category : ${ categorys }" th:value="${ category.categoryID }" th:text="${ category.categoryName }"></option> 
+                <option th:each="category : ${ categories }" th:value="${ category.categoryID }" th:text="${ category.categoryName }"></option> 
             </select>
         </div>
          <div>
@@ -42,8 +42,8 @@
 
         <th:block th:each=" product : ${products}">
             <tr>
-                <td th:text="${ product.productCode }"></td>
-                <td th:text="${ product.productName }"></td>
+                <td align="left" th:text="${ product.productCode }"></td>
+                <td><a th:href="@{ /searchDetail(productCode=${product.productCode}) }" th:text="${ product.productName }"></a></td>
                 <td th:text="${ product.productSeller }"></td>
                 <td th:text="${ product.productPrice }"></td>
                 <td th:text="${ product.productMemo }"></td>

@@ -43,7 +43,7 @@ public class RegisterController {
         return mav;
     }
 
-    @RequestMapping(path = "/registerCheck", method = RequestMethod.POST)
+    @RequestMapping(path = "/registerCheck", method = RequestMethod.GET)
     public ModelAndView checkRegister(@ModelAttribute RegisterModel model, @RequestParam(name="button") String name) {
 
         if (name.equals("return")) {

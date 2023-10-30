@@ -1,11 +1,13 @@
 package com.example.onlineshop.controller;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,24 +36,33 @@ public class SearchController {
     public ModelAndView showSearchForm() {
 
         var mav = new ModelAndView();
-        mav.addObject("categorys", categoryService.select());
+        mav.addObject("categories", categoryService.select());
         mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
         return mav;
     }
 
     @RequestMapping(path = "/searchResult", method= RequestMethod.GET)
-    public ModelAndView searchGoods(@ModelAttribute SearchModel searchModel, @RequestParam(name="button") String name) {
+    public ModelAndView showSearchGoods(@ModelAttribute SearchModel searchModel, @RequestParam(name="button") String name) {
 
         var mav = new ModelAndView();
         if (name.equals("clear")) {
             return new ModelAndView("redirect:/searchForm");
         }
-        
-        mav.addObject("products", searchService.findAll());
-        mav.addObject("categorys", categoryService.select());
+        mav.addObject("categories", categoryService.select());
+        mav.addObject("products", searchService.findAll(searchModel));
         mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
+        return mav;
+    }
+
+    @RequestMapping(path = "/searchDetail", method= RequestMethod.GET)
+    public ModelAndView showDetailGoods(@RequestParam("productCode") String productCode) {
+        
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("product", searchService.findOne(productCode));
+        mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
+        mav.setViewName("shop/searchDetail");
         return mav;
     }
 

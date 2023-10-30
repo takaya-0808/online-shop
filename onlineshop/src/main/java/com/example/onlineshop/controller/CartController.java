@@ -2,6 +2,7 @@ package com.example.onlineshop.controller;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,11 @@ public class CartController {
     private SessionService sessionService = sessionService = new SessionService();
 
     @RequestMapping(path = "/cartForm", method = RequestMethod.GET)
-    public ModelAndView getLoginForm() {
+    public ModelAndView getLoginForm(@RequestParam(name="button") String name) {
+
+        if (name.equals("return")) {
+            return new ModelAndView("redirect:/searchForm");
+        }
         ModelAndView mav = new ModelAndView();
         mav.addObject("sessionModel", sessionService.getSeesionModel(sessionService.getSessionID()));
         mav.setViewName("shop/cart");
