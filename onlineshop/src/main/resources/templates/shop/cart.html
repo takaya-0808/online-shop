@@ -17,12 +17,23 @@
                 <th>価格</th>
                 <th>購入数</th>
             </tr>
+
+            <th:block th:each=" product : ${products}">
+                <tr>
+                    <td> <input type="checkbox" th:value="*{ product.selectButton }"> </td>
+                    <td align="right" th:text="${ product.productCode }"></td>
+                    <td th:text="${ product.productName }"></td>
+                    <td th:text="${ product.productSeller }"></td>
+                    <td th:text="${ product.productPrice }"></td>
+                    <td> <input type="text" th:value="*{product.productCount}" /> </td>
+                </tr>
+            </th:block>
         </table>
 
-        <button type="submit" name="clear">取り消し</button>
-        <button type="submit" name="cancel">買い物をやめる</button>
-        <button type="submit" name="order">注文する</button>
-        <button type="submit" name="menu">メニューへ</button>
+        <button type="submit" name="button" value="clear">取り消し</button>
+        <button type="submit" name="button" value="cancel">買い物をやめる</button>
+        <button type="submit" name="button" value="order">注文する</button>
+        <button type="submit" name="button" value="menu">メニューへ</button>
     </form>
 
 </body>

@@ -8,7 +8,6 @@ public class GoodsDetailModel {
     private String productImageName;
     private String memo;
     private String productPrice;
-    private String productNumber;
 
     public String getProductCode() {
         return this.productCode;
@@ -48,14 +47,6 @@ public class GoodsDetailModel {
 
     public void setProductPrice(String productPrice) {
         this.productPrice = productPrice;
-    }
-
-    public String getProductNumber() {
-        return this.productNumber;
-    }
-
-    public void setProductNumber(String productNumber) {
-        this.productNumber = productNumber;
     }
 
 }
