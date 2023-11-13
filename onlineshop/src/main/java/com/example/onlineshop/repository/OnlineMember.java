@@ -14,9 +14,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.example.onlineshop.entity.OnlineMemberEntity;
+import com.example.onlineshop.repository.IOnlineMember;
+import com.example.onlineshop.model.RegisterModel;
 
 @Repository
-public class OnlineMember {
+public class OnlineMember implements IOnlineMember {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -43,14 +45,7 @@ public class OnlineMember {
 
     }
 
-
-    public List<OnlineMemberEntity> findAll() {
-
-        String sql = "select * from ONLINE_MEMBER";
-        OnlineMemberMapper memberMapper = new OnlineMemberMapper();
-        return jdbcTemplate.query(sql, memberMapper);
-    }
-
+    @Override
     public OnlineMemberEntity findById(String id) {
 
         String sql = "select * from ONLINE_MEMBER where MEMBER_NO = ?";
@@ -58,6 +53,15 @@ public class OnlineMember {
         return jdbcTemplate.queryForObject(sql, memberMapper, id);
     }
 
+    @Override
+    public List<OnlineMemberEntity> findAll() {
+
+        String sql = "select * from ONLINE_MEMBER";
+        OnlineMemberMapper memberMapper = new OnlineMemberMapper();
+        return jdbcTemplate.query(sql, memberMapper);
+    }
+
+    @Override
     public int insert(OnlineMemberEntity entity) {
 
         String sql = "insert into ONLINE_MEMBER (MEMBER_NO, PASSWORD, NAME, AGE, SEX, ZIP, ADDRESS, TEL, REGISTER_DATE, DELETE_FLG, LAST_UPD_DATE)" 
@@ -76,11 +80,11 @@ public class OnlineMember {
         );
     }
 
-    public int getMaxMemberNumber() {
+    @Override
+    public int edit(RegisterModel model) {return 0;}
 
-        String sql = "select max(MEMBER_NO) from ONLINE_MEMBER";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
-    }
+    @Override
+    public int delete(String id) {return 0;}
 
     
 }

@@ -18,9 +18,9 @@ public class CategoryService {
 
     private List<GoodsCategoryModel> categoryList = new ArrayList<GoodsCategoryModel>();
 
-    public List<GoodsCategoryModel> select() {
+    public List<GoodsCategoryModel> findAll() {
 
-        List<OnlineCategoryEntity> entityList = onlineCategory.select();
+        List<OnlineCategoryEntity> entityList = onlineCategory.findAll();
         categoryList.add(new GoodsCategoryModel());
         for (var entity : entityList) {
             GoodsCategoryModel model = new GoodsCategoryModel();

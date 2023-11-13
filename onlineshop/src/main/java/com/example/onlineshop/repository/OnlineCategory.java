@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.example.onlineshop.entity.OnlineCategoryEntity;
+import com.example.onlineshop.repository.IOnlineProduct;
 
 @Repository
 public class OnlineCategory {
@@ -35,7 +36,7 @@ public class OnlineCategory {
         }
     }
 
-    public List<OnlineCategoryEntity> select() {
+    public List<OnlineCategoryEntity> findAll() {
 
         String sql = "select * from ONLINE_CATEGORY";
         return jdbcTemplate.query(sql, new OnlineCategoryMapper());

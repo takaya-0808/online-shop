@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import com.example.onlineshop.service.CategoryService;
 import com.example.onlineshop.service.SessionService;
-import com.example.onlineshop.service.SearchService;
+import com.example.onlineshop.service.ISearchService;
 import com.example.onlineshop.model.GoodsCategoryModel;
 import com.example.onlineshop.model.SearchModel;
 import com.example.onlineshop.model.SearchProductModel;
@@ -27,7 +27,7 @@ public class SearchController {
     private CategoryService categoryService;
 
     @Autowired
-    private SearchService searchService;
+    private ISearchService searchService;
 
     @Autowired
     private SessionService sessionService = new SessionService();
@@ -36,7 +36,7 @@ public class SearchController {
     public ModelAndView showSearchForm() {
 
         var mav = new ModelAndView();
-        mav.addObject("categories", categoryService.select());
+        mav.addObject("categories", categoryService.findAll());
         mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
         return mav;
@@ -49,8 +49,8 @@ public class SearchController {
         if (name.equals("clear")) {
             return new ModelAndView("redirect:/searchForm");
         }
-        mav.addObject("categories", categoryService.select());
-        mav.addObject("products", searchService.findAll(searchModel));
+        mav.addObject("categories", categoryService.findAll());
+        mav.addObject("products", searchService.findSelect(searchModel));
         mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("shop/search");
         return mav;
@@ -60,7 +60,7 @@ public class SearchController {
     public ModelAndView showDetailGoods(@RequestParam("productCode") String productCode) {
 
         ModelAndView mav = new ModelAndView();
-        mav.addObject("product", searchService.findOne(productCode));
+        mav.addObject("product", searchService.findById(productCode));
         mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("shop/searchDetail");
         return mav;

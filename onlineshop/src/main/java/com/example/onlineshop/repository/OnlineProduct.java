@@ -15,9 +15,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.example.onlineshop.entity.OnlineProductEntity;
 import com.example.onlineshop.model.SearchModel;
+import com.example.onlineshop.repository.IOnlineProduct;
 
 @Repository
-public class OnlineProduct {
+public class OnlineProduct implements IOnlineProduct {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -44,14 +45,20 @@ public class OnlineProduct {
         }
     }
 
-    public List<OnlineProductEntity> findAll(SearchModel searchModel) {
+    @Override
+    public List<OnlineProductEntity> findAll() {
         String sql = "select * from ONLINE_PRODUCT";
         return jdbcTemplate.query(sql, new OnlineProductMapper());
     }
 
-    public OnlineProductEntity findOne(String productCode) {
+    @Override
+    public OnlineProductEntity findById(String productCode) {
         String sql = "select * from ONLINE_PRODUCT where PRODUCT_CODE = ?";
         return jdbcTemplate.queryForObject(sql, new OnlineProductMapper(), productCode);
     }
 
+    @Override
+    public List<OnlineProductEntity> findSelect(SearchModel model) {return null;}
+
+    
 }

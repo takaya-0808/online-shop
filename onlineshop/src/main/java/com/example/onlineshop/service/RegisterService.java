@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import com.example.onlineshop.repository.OnlineMember;
+import com.example.onlineshop.repository.IOnlineMember;
 import com.example.onlineshop.model.RegisterModel;
 import com.example.onlineshop.model.RegisterCheckModel;
 import com.example.onlineshop.entity.OnlineMemberEntity;
@@ -15,7 +15,7 @@ import com.example.onlineshop.util.Uuid;
 public class RegisterService {
 
     @Autowired
-    private OnlineMember onlineMember;
+    private IOnlineMember onlineMember;
 
     private int memberNO;
 
