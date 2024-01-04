@@ -8,52 +8,58 @@
 
    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
 
+   <p th:text="${MemberNameError}"></p>
+   <p th:text="${PasswordError}"></p>
+   <p th:text="${AgeError}"></p>
+   <p th:text="${SexError}"></p>
+   <p th:text="${PostNumberError}"></p>
+   <p th:text="${AddrError}"></p>
+   <p th:text="${PhoneError}"></p>
+   
    <form action="/registerCheck" method="post">
-        <div>
-            <label> 名前 </label> 
-            <input type="text" name="memberName" th:value="${ registerModel.memberName }">
-        </div>
-        <p th:text="${MemberNameError}"></p>
-         <div>
-            <label> パスワード </label>
-            <input type="password" name="password" th:value="${ registerModel.password }">
-         </div>
-         <div>
-            <label> パスワード(確認用) </label>
-            <input type="password" name="passwordCheck" th:value="${ registerModel.passwordCheck }">
-         </div>
-         <p th:text="${PasswordError}"></p>
-         <div>
-            <label> 年齢 </label>
-            <input type="text" name="age" th:value="${ registerModel.age }">
-         </div>
-         <p th:text="${AgeError}"></p>
-         <div>
-            <label> 性別 </label>
-            <select name="sex">
-               <option th:each="gender : ${ genderList }" th:value="${ gender.genderId }" th:text="${ gender.genderName }" th:selected="${ gender.genderId == registerModel.sex }"></option> 
-            </select>
-         </div>
-         <p th:text="${SexError}"></p>
-         <div>
-            <label> 郵便番号 </label>
-            <input type="text" name="postNumber" th:value="${ registerModel.postNumber }">
-         </div>
-         <p th:text="${PostNumberError}"></p>
-         <div>
-            <label> 住所 </label>
-            <input type="text" name="addr" th:value="${ registerModel.addr }">
-         </div>
-         <p th:text="${AddrError}"></p>
-         <div>
-            <label> 電話番号 </label>
-            <input type="text" name="phoneNumber" th:value="${ registerModel.phoneNumber }">
-         </div>
-         <p th:text="${PhoneError}"></p>
+      <table>
+         <tr>
+            <th> 名前 </th>
+            <td> <input type="text" name="memberName" th:value="${ registerModel.memberName }"> </td>
+         </tr>
+         <tr>
+            <th> パスワード </th>
+            <td> <input type="text" name="memberName" th:value="${ registerModel.memberName }"> </td>
+         </tr>
+         <tr>
+            <th> パスワード(確認用) </th>
+            <td> <input type="password" name="passwordCheck" th:value="${ registerModel.passwordCheck }"> </td>
+         </tr>
+         <tr>
+            <th> 年齢 </th>
+            <td> <input type="text" name="age" th:value="${ registerModel.age }"> </td>
+         </tr>
+         <tr>
+            <th> 性別 </th>
+            <td> 
+               <select name="sex">
+                  <option th:each="gender : ${ genderList }" th:value="${ gender.genderId }" th:text="${ gender.genderName }" th:selected="${ gender.genderId == registerModel.sex }"></option> 
+               </select>
+            </td>
+         </tr>
+         <tr>
+            <th> 郵便番号 </th>
+            <td> <input type="text" name="postNumber" th:value="${ registerModel.postNumber }"> </td>
+         </tr>
+         <tr>
+            <th> 住所 </th>
+            <td> <textarea rows="5" cols="33" name="addr" th:value="${ registerModel.addr }"></textarea> </td>
+         </tr>
+         <tr>
+            <th> 電話番号 </th>
+            <td> <input type="text" name="phoneNumber" th:value="${ registerModel.phoneNumber }"> </td>
+         </tr>
+      </table>
 
-         <button type="submit" name="button" value="check">確認</button>
-         <button type="submit" name="button" value="return">戻る</button>
-         <button type="submit" name="button" value="clear">クリア</button>
+      <button type="submit" name="button" value="check">確認</button>
+      <button type="submit" name="button" value="return">戻る</button>
+      <button type="submit" name="button" value="clear">クリア</button>
+   
    </form>
     
 

@@ -103,3 +103,7 @@ insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOC
 
 insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOCK_COUNT, REGISTER_DATE, UNIT_PRICE, PICTURE_NAME, MEMO, DELETE_FLG, LAST_UPD_DATE)
                       value (3, 3, "メモメモ", "中国", 2, Now(), 2990, "/img/sample2.png", "ゆったりはけるワイドフィット。ウエストはゴム仕様で快適なはき心地。", "1", Now());
+
+
+insert into ONLINE_STAFF (STAFF_NO, PASSWORD, NAME, AGE, SEX, REGISTER_DATE, LAST_UPD_DATE) 
+                      value (1, 'pass', 'hoge', 34, '男', Now(), Now());

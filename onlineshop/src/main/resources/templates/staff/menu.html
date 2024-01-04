@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .red-text {
+            color: red;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>会員ログイン画面</title>
+</head>
+<body>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+    
+    <a href="/staff/search">購入履歴</a> </br>
+
+    <button type="button" onclick="location.href='/staff/logout'">ログアウト</button>
+</body>
+</html>

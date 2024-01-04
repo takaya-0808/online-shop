@@ -17,7 +17,7 @@ import com.example.onlineshop.entity.OnlineCategoryEntity;
 import com.example.onlineshop.repository.IOnlineProduct;
 
 @Repository
-public class OnlineCategory {
+public class OnlineCategory implements IOnlineCategory {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -36,10 +36,16 @@ public class OnlineCategory {
         }
     }
 
+    @Override
     public List<OnlineCategoryEntity> findAll() {
 
         String sql = "select * from ONLINE_CATEGORY";
         return jdbcTemplate.query(sql, new OnlineCategoryMapper());
+    }
+
+    @Override
+    public OnlineCategoryEntity findById(String id) {
+        return null;
     }
 
 }
