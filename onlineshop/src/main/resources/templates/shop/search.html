@@ -46,7 +46,12 @@
                 <td><a th:href="@{ /searchDetail(productCode=${product.productCode}) }" th:text="${ product.productName }"></a></td>
                 <td th:text="${ product.productSeller }"></td>
                 <td th:text="${ product.productPrice }"></td>
-                <td th:text="${ product.productMemo }"></td>
+                <th:block th:if="${20 <= #strings.length(product.productMemo)}">
+                    <td th:text="${#strings.substring(product.productMemo,0,19)} + '...'"></td>
+                </th:block>
+                <th:block th:if="${20 > #strings.length(product.productMemo)}">
+                    <td th:text="${ product.productMemo }"></td>
+                </th:block>
             </tr>
         </th:block>
     </table>

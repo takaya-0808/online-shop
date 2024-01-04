@@ -77,4 +77,12 @@ public class CartService implements ICartService {
         }
         return shoppingCart;
     }
+
+    @Override
+    public int getCountStock(String id) {
+
+        OnlineProductEntity entity = (OnlineProductEntity)onlineProduct.findById(id);
+        int count = entity.getCountStock();
+        return count;
+    }
 }

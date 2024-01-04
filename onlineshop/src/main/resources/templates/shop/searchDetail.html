@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <style>
+        .red-text {
+            color: red;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>商品詳細画面</title>
 </head>
 <body>
 
     <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
-
+    <p th:text="${passwordError}" class="red-text"></p>
     <form th:action="@{/cartForm}" method="get">
 
         <table>

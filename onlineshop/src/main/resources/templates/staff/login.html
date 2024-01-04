@@ -11,12 +11,12 @@
 </head>
 <body>
     <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
-
-    <form action="/loginCheck" method="post">
+    <p th:text="${ msg }" class="red-text"></p>
+    <form action="/staff/loginCheck" method="post">
         <table border="0">
             <tr>
-                <th align="left" valign="top"> 会員No </th>
-                <td> <input type="text" name="memberNo"> </td>
+                <th align="left" valign="top"> ログインID </th>
+                <td> <input type="text" name="staffNo"> </td>
             </tr>
             <p th:text="${memberNoError}" class="red-text"></p>            
             <tr>
@@ -29,7 +29,5 @@
         <button type="submit" name="button" value="クリア"> クリア </button>
     </form>
     
-    <a href="/registerForm"> 新規会員登録はこちら </a> 
-
 </body>
 </html>

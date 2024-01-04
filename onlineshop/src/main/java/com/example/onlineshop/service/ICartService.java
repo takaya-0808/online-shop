@@ -17,4 +17,6 @@ public interface ICartService extends IService {
 
     public int order(List<GoodsCartModel> model);
 
+    public int getCountStock(String id);
+
 }
