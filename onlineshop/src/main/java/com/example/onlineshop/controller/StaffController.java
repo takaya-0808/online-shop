@@ -32,25 +32,30 @@ public class StaffController {
     @RequestMapping(path="/staff/loginCheck", method = RequestMethod.POST)
     public ModelAndView checkLogin(@ModelAttribute StaffModel staffModel, @RequestParam(name="button") String name) {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
+        if (name.equals("クリア")) {
+            return new ModelAndView("staff/login");
+        }
         boolean flg = staffService.login(staffModel);
         String message = "";
         // ログイン成功
         if (flg) {
-            message = "ログインに成功しました。";
-            return new ModelAndView("redirect:/staff");
+            return new ModelAndView("/staff");
         } 
         // ログイン失敗
         else {
             message = "ログイン失敗しました。";
         }
+        System.out.println(message);
         mav.addObject("msg", message);
         mav.setViewName("staff/login");
         return mav;
     }
 
-    @RequestMapping(path="/staff", method = RequestMethod.POST) 
+    @RequestMapping(path="/staff", method = RequestMethod.GET) 
     public ModelAndView staffMenu() {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         mav.setViewName("staff/menu");
         return mav;
     }
@@ -58,12 +63,14 @@ public class StaffController {
     @RequestMapping(path="/staff/search", method = RequestMethod.GET)
     public ModelAndView searchForm() {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         return mav;
     }
 
     @RequestMapping(path="/staff/logout", method = RequestMethod.POST)
     public ModelAndView logout() {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("sessionModel", sessionService.getSessionModel(sessionService.getSessionID()));
         return mav;
     }
 

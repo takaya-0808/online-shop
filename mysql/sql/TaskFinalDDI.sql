@@ -106,4 +106,4 @@ insert into ONLINE_PRODUCT (PRODUCT_CODE, CATEGORY_ID, PRODUCT_NAME, MAKER, STOC
 
 
 insert into ONLINE_STAFF (STAFF_NO, PASSWORD, NAME, AGE, SEX, REGISTER_DATE, LAST_UPD_DATE) 
-                      value (1, pass, hoge, 34, '男', Now(), Now());
+                      value (1, 'pass', 'hoge', 34, '男', Now(), Now());

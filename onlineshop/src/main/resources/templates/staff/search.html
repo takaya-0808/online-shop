@@ -10,7 +10,7 @@
     <title>会員ログイン画面</title>
 </head>
 <body>
-    <p th:text="'管理者' + ${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
     <table border="0">
         <tr>
             <th> 会員No </th>

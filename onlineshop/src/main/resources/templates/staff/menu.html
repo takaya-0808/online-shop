@@ -10,7 +10,7 @@
     <title>会員ログイン画面</title>
 </head>
 <body>
-    <p th:text="管理者 ${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
+    <p th:text="${ sessionModel.sessionName } + ' ' +  ${ sessionModel.sessionTime }"></p>
     
     <a href="/staff/search">購入履歴</a> </br>
 
